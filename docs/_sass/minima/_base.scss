@@ -252,6 +252,7 @@ table {
       background-color: $table-zebra-color;
     }
   }
+
   th, td {
     padding: ($spacing-unit / 3) ($spacing-unit / 2);
   }
@@ -269,6 +270,15 @@ table {
     -webkit-overflow-scrolling: touch;
             -ms-overflow-style: -ms-autohiding-scrollbar;
   }
+}
+
+summary {
+    cursor: pointer;
+    background:rgb(220, 220, 220);
+}
+
+summary:hover {
+    text-decoration: underline;
 }
 
 @media print {

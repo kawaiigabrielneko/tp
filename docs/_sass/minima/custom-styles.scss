@@ -32,3 +32,9 @@ h2, h3, h4, h5, h6 {
   }
 }
 
+.summaryTable {
+  tr th:nth-child(2){
+         width: 40%;
+   }
+}
+

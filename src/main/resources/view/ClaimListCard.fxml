@@ -2,38 +2,27 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-            <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
-            </padding>
-         <HBox prefHeight="30.0" prefWidth="130.0">
-            <children>
-               <Label fx:id="title" styleClass="cell-big-label" text="\$title" />
-               <Pane prefHeight="30.0" prefWidth="60.0" HBox.hgrow="ALWAYS">
-                  <HBox.margin>
-                     <Insets />
-                  </HBox.margin>
-               </Pane>
-               <Label fx:id="status" alignment="CENTER_RIGHT" styleClass="claim-big-label" text="\$status" textAlignment="RIGHT" />
-            </children>
-         </HBox>
-            <Label fx:id="nameToDisplay" styleClass="cell_small_label" text="\$name" />
-         <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-        </VBox>
-        <rowConstraints>
-            <RowConstraints />
-        </rowConstraints>
-    </GridPane>
+     <VBox fx:id="cardBox" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="105" minWidth="-Infinity" prefWidth="200.0" HBox.hgrow="ALWAYS">
+         <padding>
+             <Insets bottom="5" left="15" right="5" top="5" />
+         </padding>
+      <HBox>
+         <children>
+            <Pane prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Pane>
+            <Label fx:id="status" alignment="CENTER_RIGHT" styleClass="claim-big-label" text="\$status" textAlignment="RIGHT" />
+         </children>
+      </HBox>
+      <Label fx:id="title" styleClass="cell-big-label" text="\$title" wrapText="true" />
+         <Label fx:id="nameToDisplay" styleClass="cell_small_label" text="\$name" wrapText="true" />
+      <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true" />
+     </VBox>
 </HBox>

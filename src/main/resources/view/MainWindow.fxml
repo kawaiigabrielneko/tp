@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Insurance Pal" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="1000" onCloseRequest="#handleExit" title="InsurancePal" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
     </icons>
@@ -49,7 +49,7 @@
                         </StackPane>
                     </children>
                 </VBox>
-                <HBox prefHeight="223.0" prefWidth="353.0" VBox.vgrow="ALWAYS">
+                <HBox prefHeight="250.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                     <children>
 
                         <VBox fx:id="personList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
