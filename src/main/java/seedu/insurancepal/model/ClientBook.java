@@ -12,7 +12,7 @@ import seedu.insurancepal.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class InsurancePal implements ReadOnlyInsurancePal {
+public class ClientBook implements ReadOnlyClientBook {
 
     private final UniquePersonList persons;
 
@@ -27,12 +27,12 @@ public class InsurancePal implements ReadOnlyInsurancePal {
         persons = new UniquePersonList();
     }
 
-    public InsurancePal() {}
+    public ClientBook() {}
 
     /**
      * Creates an InsurancePal using the Persons in the {@code toBeCopied}
      */
-    public InsurancePal(ReadOnlyInsurancePal toBeCopied) {
+    public ClientBook(ReadOnlyClientBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class InsurancePal implements ReadOnlyInsurancePal {
     /**
      * Resets the existing data of this {@code InsurancePal} with {@code newData}.
      */
-    public void resetData(ReadOnlyInsurancePal newData) {
+    public void resetData(ReadOnlyClientBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -109,8 +109,8 @@ public class InsurancePal implements ReadOnlyInsurancePal {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof InsurancePal // instanceof handles nulls
-                && persons.equals(((InsurancePal) other).persons));
+                || (other instanceof ClientBook // instanceof handles nulls
+                && persons.equals(((ClientBook) other).persons));
     }
 
     @Override

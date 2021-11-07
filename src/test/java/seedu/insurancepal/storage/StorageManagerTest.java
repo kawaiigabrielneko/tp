@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.insurancepal.commons.core.GuiSettings;
-import seedu.insurancepal.model.InsurancePal;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ClientBook;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -54,10 +54,10 @@ public class StorageManagerTest {
          * {@link JsonInsurancePalStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonInsurancePalStorageTest} class.
          */
-        InsurancePal original = getTypicalAddressBook();
+        ClientBook original = getTypicalAddressBook();
         storageManager.saveInsurancePal(original);
-        ReadOnlyInsurancePal retrieved = storageManager.readInsurancePal().get();
-        assertEquals(original, new InsurancePal(retrieved));
+        ReadOnlyClientBook retrieved = storageManager.readClientBook().get();
+        assertEquals(original, new ClientBook(retrieved));
     }
 
     @Test

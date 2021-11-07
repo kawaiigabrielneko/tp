@@ -20,26 +20,26 @@ import seedu.insurancepal.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final InsurancePal addressBook;
+    private final ClientBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyInsurancePal addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyClientBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new InsurancePal(addressBook);
+        this.addressBook = new ClientBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new InsurancePal(), new UserPrefs());
+        this(new ClientBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -80,12 +80,12 @@ public class ModelManager implements Model {
     //=========== InsurancePal ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyInsurancePal addressBook) {
+    public void setAddressBook(ReadOnlyClientBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyInsurancePal getAddressBook() {
+    public ReadOnlyClientBook getAddressBook() {
         return addressBook;
     }
 

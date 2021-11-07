@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.insurancepal.commons.core.Messages;
 import seedu.insurancepal.commons.core.index.Index;
 import seedu.insurancepal.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.insurancepal.model.InsurancePal;
+import seedu.insurancepal.model.ClientBook;
 import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.ModelManager;
 import seedu.insurancepal.model.UserPrefs;
@@ -43,7 +43,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new InsurancePal(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -65,7 +65,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new InsurancePal(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new InsurancePal(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -94,7 +94,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new InsurancePal(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

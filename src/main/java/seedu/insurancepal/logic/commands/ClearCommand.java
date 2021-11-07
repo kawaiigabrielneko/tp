@@ -2,7 +2,7 @@ package seedu.insurancepal.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.insurancepal.model.InsurancePal;
+import seedu.insurancepal.model.ClientBook;
 import seedu.insurancepal.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new InsurancePal());
+        model.setAddressBook(new ClientBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

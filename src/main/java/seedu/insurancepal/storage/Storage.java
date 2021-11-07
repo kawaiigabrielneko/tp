@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.insurancepal.commons.exceptions.DataConversionException;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.ReadOnlyUserPrefs;
 import seedu.insurancepal.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends InsurancePalStorage, UserPrefsStorage {
     Path getInsurancePalFilePath();
 
     @Override
-    Optional<ReadOnlyInsurancePal> readInsurancePal() throws DataConversionException, IOException;
+    Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException, IOException;
 
     @Override
-    void saveInsurancePal(ReadOnlyInsurancePal addressBook) throws IOException;
+    void saveInsurancePal(ReadOnlyClientBook addressBook) throws IOException;
 
 }

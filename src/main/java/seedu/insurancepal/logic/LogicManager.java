@@ -13,7 +13,7 @@ import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.logic.parser.InsurancePalParser;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
 import seedu.insurancepal.model.Model;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.person.Person;
 import seedu.insurancepal.storage.Storage;
 
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyInsurancePal getAddressBook() {
+    public ReadOnlyClientBook getClientBook() {
         return model.getAddressBook();
     }
 
@@ -74,7 +74,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getClientBookFilePath() {
         return model.getAddressBookFilePath();
     }
 

@@ -6,8 +6,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.insurancepal.commons.core.Money;
-import seedu.insurancepal.model.InsurancePal;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ClientBook;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.appointment.Appointment;
 import seedu.insurancepal.model.claim.Claim;
 import seedu.insurancepal.model.claim.Description;
@@ -67,8 +67,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyInsurancePal getSampleAddressBook() {
-        InsurancePal sampleAb = new InsurancePal();
+    public static ReadOnlyClientBook getSampleAddressBook() {
+        ClientBook sampleAb = new ClientBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

@@ -1,6 +1,6 @@
 package seedu.insurancepal.testutil;
 
-import seedu.insurancepal.model.InsurancePal;
+import seedu.insurancepal.model.ClientBook;
 import seedu.insurancepal.model.person.Person;
 
 /**
@@ -10,13 +10,13 @@ import seedu.insurancepal.model.person.Person;
  */
 public class AddressBookBuilder {
 
-    private InsurancePal addressBook;
+    private ClientBook addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new InsurancePal();
+        addressBook = new ClientBook();
     }
 
-    public AddressBookBuilder(InsurancePal addressBook) {
+    public AddressBookBuilder(ClientBook addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -28,7 +28,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public InsurancePal build() {
+    public ClientBook build() {
         return addressBook;
     }
 }

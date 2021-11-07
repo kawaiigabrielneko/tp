@@ -5,11 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.insurancepal.commons.exceptions.DataConversionException;
-import seedu.insurancepal.model.InsurancePal;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ClientBook;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 
 /**
- * Represents a storage for {@link InsurancePal}.
+ * Represents a storage for {@link ClientBook}.
  */
 public interface InsurancePalStorage {
 
@@ -19,28 +19,28 @@ public interface InsurancePalStorage {
     Path getInsurancePalFilePath();
 
     /**
-     * Returns InsurancePal data as a {@link ReadOnlyInsurancePal}.
+     * Returns InsurancePal data as a {@link ReadOnlyClientBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyInsurancePal> readInsurancePal() throws DataConversionException, IOException;
+    Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException, IOException;
 
     /**
      * @see #getInsurancePalFilePath()
      */
-    Optional<ReadOnlyInsurancePal> readInsurancePal(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyInsurancePal} to the storage.
+     * Saves the given {@link ReadOnlyClientBook} to the storage.
      * @param insurancePal cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveInsurancePal(ReadOnlyInsurancePal insurancePal) throws IOException;
+    void saveInsurancePal(ReadOnlyClientBook insurancePal) throws IOException;
 
     /**
-     * @see #saveInsurancePal(ReadOnlyInsurancePal)
+     * @see #saveInsurancePal(ReadOnlyClientBook)
      */
-    void saveInsurancePal(ReadOnlyInsurancePal insurancePal, Path filePath) throws IOException;
+    void saveInsurancePal(ReadOnlyClientBook insurancePal, Path filePath) throws IOException;
 
 }

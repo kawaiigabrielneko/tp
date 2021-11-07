@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.insurancepal.model.InsurancePal;
+import seedu.insurancepal.model.ClientBook;
 import seedu.insurancepal.model.person.Insurance;
 import seedu.insurancepal.model.person.InsuranceType;
 import seedu.insurancepal.model.person.Person;
@@ -79,8 +79,8 @@ public class TypicalPersons {
     /**
      * Returns an {@code InsurancePal} with all the typical persons.
      */
-    public static InsurancePal getTypicalAddressBook() {
-        InsurancePal ab = new InsurancePal();
+    public static ClientBook getTypicalAddressBook() {
+        ClientBook ab = new ClientBook();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

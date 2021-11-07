@@ -31,7 +31,7 @@ import seedu.insurancepal.testutil.EditPersonDescriptorBuilder;
 import seedu.insurancepal.testutil.PersonBuilder;
 import seedu.insurancepal.testutil.PersonUtil;
 
-public class InsurancePalParserTest {
+public class ClientBookParserTest {
 
     private final InsurancePalParser parser = new InsurancePalParser();
 

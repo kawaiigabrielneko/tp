@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.insurancepal.commons.exceptions.IllegalValueException;
 import seedu.insurancepal.commons.util.JsonUtil;
-import seedu.insurancepal.model.InsurancePal;
+import seedu.insurancepal.model.ClientBook;
 import seedu.insurancepal.testutil.TypicalPersons;
 
-public class JsonSerializableInsurancePalTest {
+public class JsonSerializableClientBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableInsurancePalTest");
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
@@ -22,25 +22,25 @@ public class JsonSerializableInsurancePalTest {
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableInsurancePal dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
-                JsonSerializableInsurancePal.class).get();
-        InsurancePal addressBookFromFile = dataFromFile.toModelType();
-        InsurancePal typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        JsonSerializableClientBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+                JsonSerializableClientBook.class).get();
+        ClientBook addressBookFromFile = dataFromFile.toModelType();
+        ClientBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableInsurancePal dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                JsonSerializableInsurancePal.class).get();
+        JsonSerializableClientBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+                JsonSerializableClientBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableInsurancePal dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-                JsonSerializableInsurancePal.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableInsurancePal.MESSAGE_DUPLICATE_PERSON,
+        JsonSerializableClientBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+                JsonSerializableClientBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableClientBook.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
     }
 

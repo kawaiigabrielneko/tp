@@ -24,7 +24,7 @@ import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
 import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.ModelManager;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.UserPrefs;
 import seedu.insurancepal.model.person.Person;
 import seedu.insurancepal.storage.JsonInsurancePalStorage;
@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonInsurancePalStorage addressBookStorage =
+        JsonInsurancePalStorage insurancePalStorageStorage =
                 new JsonInsurancePalStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(insurancePalStorageStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -160,7 +160,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveInsurancePal(ReadOnlyInsurancePal addressBook, Path filePath) throws IOException {
+        public void saveInsurancePal(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

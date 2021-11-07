@@ -7,7 +7,7 @@ import seedu.insurancepal.commons.core.GuiSettings;
 import seedu.insurancepal.logic.commands.CommandResult;
 import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.person.Person;
 
 /**
@@ -28,7 +28,7 @@ public interface Logic {
      *
      * @see seedu.insurancepal.model.Model#getAddressBook()
      */
-    ReadOnlyInsurancePal getAddressBook();
+    ReadOnlyClientBook getClientBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -42,7 +42,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getClientBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

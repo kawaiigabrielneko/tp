@@ -12,7 +12,7 @@ import seedu.insurancepal.commons.exceptions.DataConversionException;
 import seedu.insurancepal.commons.exceptions.IllegalValueException;
 import seedu.insurancepal.commons.util.FileUtil;
 import seedu.insurancepal.commons.util.JsonUtil;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 
 /**
  * A class to access InsurancePal data stored as a json file on the hard disk.
@@ -32,21 +32,21 @@ public class JsonInsurancePalStorage implements InsurancePalStorage {
     }
 
     @Override
-    public Optional<ReadOnlyInsurancePal> readInsurancePal() throws DataConversionException {
-        return readInsurancePal(filePath);
+    public Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException {
+        return readClientBook(filePath);
     }
 
     /**
-     * Similar to {@link #readInsurancePal()}.
+     * Similar to {@link #readClientBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyInsurancePal> readInsurancePal(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableInsurancePal> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableInsurancePal.class);
+        Optional<JsonSerializableClientBook> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableClientBook.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -60,21 +60,21 @@ public class JsonInsurancePalStorage implements InsurancePalStorage {
     }
 
     @Override
-    public void saveInsurancePal(ReadOnlyInsurancePal addressBook) throws IOException {
+    public void saveInsurancePal(ReadOnlyClientBook addressBook) throws IOException {
         saveInsurancePal(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveInsurancePal(ReadOnlyInsurancePal)}.
+     * Similar to {@link #saveInsurancePal(ReadOnlyClientBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveInsurancePal(ReadOnlyInsurancePal addressBook, Path filePath) throws IOException {
+    public void saveInsurancePal(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableInsurancePal(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableClientBook(addressBook), filePath);
     }
 
 }

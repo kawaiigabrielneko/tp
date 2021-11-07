@@ -6,7 +6,7 @@ import seedu.insurancepal.model.person.Person;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyInsurancePal {
+public interface ReadOnlyClientBook {
 
     /**
      * Returns an unmodifiable view of the persons list.

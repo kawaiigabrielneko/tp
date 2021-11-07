@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.insurancepal.commons.exceptions.IllegalValueException;
-import seedu.insurancepal.model.InsurancePal;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ClientBook;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.person.Person;
 
 /**
  * An Immutable InsurancePal that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableInsurancePal {
+class JsonSerializableClientBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
@@ -27,7 +27,7 @@ class JsonSerializableInsurancePal {
      * Constructs a {@code JsonSerializableInsurancePal} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableInsurancePal(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableClientBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
@@ -36,7 +36,7 @@ class JsonSerializableInsurancePal {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableInsurancePal}.
      */
-    public JsonSerializableInsurancePal(ReadOnlyInsurancePal source) {
+    public JsonSerializableClientBook(ReadOnlyClientBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -45,16 +45,16 @@ class JsonSerializableInsurancePal {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public InsurancePal toModelType() throws IllegalValueException {
-        InsurancePal insurancePal = new InsurancePal();
+    public ClientBook toModelType() throws IllegalValueException {
+        ClientBook clientBook = new ClientBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (insurancePal.hasPerson(person)) {
+            if (clientBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            insurancePal.addPerson(person);
+            clientBook.addPerson(person);
         }
-        return insurancePal;
+        return clientBook;
     }
 
 }

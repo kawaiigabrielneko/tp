@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.insurancepal.commons.core.GuiSettings;
 import seedu.insurancepal.logic.commands.exceptions.CommandException;
-import seedu.insurancepal.model.InsurancePal;
+import seedu.insurancepal.model.ClientBook;
 import seedu.insurancepal.model.Model;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.ReadOnlyUserPrefs;
 import seedu.insurancepal.model.person.Person;
 import seedu.insurancepal.testutil.PersonBuilder;
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyInsurancePal newData) {
+        public void setAddressBook(ReadOnlyClientBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyInsurancePal getAddressBook() {
+        public ReadOnlyClientBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,8 +196,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyInsurancePal getAddressBook() {
-            return new InsurancePal();
+        public ReadOnlyClientBook getAddressBook() {
+            return new ClientBook();
         }
     }
 

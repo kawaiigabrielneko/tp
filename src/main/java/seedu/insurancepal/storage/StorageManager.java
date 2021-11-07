@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.insurancepal.commons.core.LogsCenter;
 import seedu.insurancepal.commons.exceptions.DataConversionException;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.ReadOnlyUserPrefs;
 import seedu.insurancepal.model.UserPrefs;
 
@@ -55,23 +55,23 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyInsurancePal> readInsurancePal() throws DataConversionException, IOException {
-        return readInsurancePal(insurancePalStorage.getInsurancePalFilePath());
+    public Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException, IOException {
+        return readClientBook(insurancePalStorage.getInsurancePalFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyInsurancePal> readInsurancePal(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return insurancePalStorage.readInsurancePal(filePath);
+        return insurancePalStorage.readClientBook(filePath);
     }
 
     @Override
-    public void saveInsurancePal(ReadOnlyInsurancePal addressBook) throws IOException {
+    public void saveInsurancePal(ReadOnlyClientBook addressBook) throws IOException {
         saveInsurancePal(addressBook, insurancePalStorage.getInsurancePalFilePath());
     }
 
     @Override
-    public void saveInsurancePal(ReadOnlyInsurancePal addressBook, Path filePath) throws IOException {
+    public void saveInsurancePal(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         insurancePalStorage.saveInsurancePal(addressBook, filePath);
     }

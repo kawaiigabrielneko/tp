@@ -15,10 +15,10 @@ import seedu.insurancepal.commons.util.ConfigUtil;
 import seedu.insurancepal.commons.util.StringUtil;
 import seedu.insurancepal.logic.Logic;
 import seedu.insurancepal.logic.LogicManager;
-import seedu.insurancepal.model.InsurancePal;
+import seedu.insurancepal.model.ClientBook;
 import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.ModelManager;
-import seedu.insurancepal.model.ReadOnlyInsurancePal;
+import seedu.insurancepal.model.ReadOnlyClientBook;
 import seedu.insurancepal.model.ReadOnlyUserPrefs;
 import seedu.insurancepal.model.UserPrefs;
 import seedu.insurancepal.model.util.SampleDataUtil;
@@ -74,20 +74,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyInsurancePal> addressBookOptional;
-        ReadOnlyInsurancePal initialData;
+        Optional<ReadOnlyClientBook> addressBookOptional;
+        ReadOnlyClientBook initialData;
         try {
-            addressBookOptional = storage.readInsurancePal();
+            addressBookOptional = storage.readClientBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample InsurancePal");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty InsurancePal");
-            initialData = new InsurancePal();
+            initialData = new ClientBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty InsurancePal");
-            initialData = new InsurancePal();
+            initialData = new ClientBook();
         }
 
         return new ModelManager(initialData, userPrefs);
