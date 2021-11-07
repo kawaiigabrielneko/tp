@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.insurancepal.model.claim.Claim;
-import seedu.insurancepal.model.person.Name;
+import seedu.insurancepal.model.client.Name;
 
 /**
  * An UI component that displays information of a {@code Claim}.

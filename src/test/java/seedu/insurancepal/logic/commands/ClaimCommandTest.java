@@ -26,7 +26,7 @@ import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.ModelManager;
 import seedu.insurancepal.model.UserPrefs;
 import seedu.insurancepal.model.claim.Title;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 import seedu.insurancepal.testutil.ClaimBuilder;
 
 public class ClaimCommandTest {
@@ -37,14 +37,14 @@ public class ClaimCommandTest {
     @Test
     public void execute_validInput_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Person personToAddClaim = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client clientToAddClaim = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         ClaimCommand claimCommand = new ClaimCommand(INDEX_FIRST_PERSON, claimBuilderAmy.buildEditClaimDescriptor());
 
-        Person personAfterAddClaim = new Person(personToAddClaim, Set.of(CLAIM_AMY));
+        Client clientAfterAddClaim = new Client(clientToAddClaim, Set.of(CLAIM_AMY));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setPerson(personToAddClaim, personAfterAddClaim);
+        expectedModel.setPerson(clientToAddClaim, clientAfterAddClaim);
 
         String expectedMessage = String.format(MESSAGE_CLAIM_ADDED_SUCCESS, CLAIM_AMY);
 
@@ -55,11 +55,11 @@ public class ClaimCommandTest {
     public void execute_removeClaim_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        Person personToAddClaim = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client clientToAddClaim = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        Person personAfterAddClaim = new Person(personToAddClaim, Set.of(CLAIM_AMY));
+        Client clientAfterAddClaim = new Client(clientToAddClaim, Set.of(CLAIM_AMY));
 
-        model.setPerson(personToAddClaim, personAfterAddClaim);
+        model.setPerson(clientToAddClaim, clientAfterAddClaim);
 
         ClaimCommand claimCommand = new ClaimCommand(INDEX_FIRST_PERSON,
                 new EditClaimDescriptor(new Title(VALID_CLAIM_TITLE_AMY)));
@@ -75,11 +75,11 @@ public class ClaimCommandTest {
     public void execute_editClaim_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        Person personToAddClaim = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client clientToAddClaim = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        Person personAfterAddClaim = new Person(personToAddClaim, Set.of(CLAIM_AMY));
+        Client clientAfterAddClaim = new Client(clientToAddClaim, Set.of(CLAIM_AMY));
 
-        model.setPerson(personToAddClaim, personAfterAddClaim);
+        model.setPerson(clientToAddClaim, clientAfterAddClaim);
 
         ClaimBuilder updatedClaimBuilder = new ClaimBuilder(CLAIM_AMY)
                 .withDescription(VALID_CLAIM_STATUS_BOB);
@@ -89,9 +89,9 @@ public class ClaimCommandTest {
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        Person personAfterEditedClaim = new Person(personToAddClaim, Set.of(updatedClaimBuilder.buildClaim()));
+        Client clientAfterEditedClaim = new Client(clientToAddClaim, Set.of(updatedClaimBuilder.buildClaim()));
 
-        expectedModel.setPerson(personToAddClaim, personAfterEditedClaim);
+        expectedModel.setPerson(clientToAddClaim, clientAfterEditedClaim);
 
         String expectedMessage = String.format(MESSAGE_CLAIM_EDITED_SUCCESS, updatedClaimBuilder.buildClaim());
 
@@ -101,15 +101,15 @@ public class ClaimCommandTest {
     @Test
     public void execute_incompleteClaim_throwsCommandException() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Person personToAddClaim = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client clientToAddClaim = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         ClaimCommand claimCommand = new ClaimCommand(INDEX_FIRST_PERSON,
                 new EditClaimDescriptor(new Title(VALID_CLAIM_TITLE_AMY)));
 
-        Person personAfterAddClaim = new Person(personToAddClaim, Set.of(CLAIM_AMY));
+        Client clientAfterAddClaim = new Client(clientToAddClaim, Set.of(CLAIM_AMY));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setPerson(personToAddClaim, personAfterAddClaim);
+        expectedModel.setPerson(clientToAddClaim, clientAfterAddClaim);
 
         String expectedMessage = String.format(MESSAGE_CLAIM_REMOVE_FAILURE, VALID_CLAIM_TITLE_AMY);
 

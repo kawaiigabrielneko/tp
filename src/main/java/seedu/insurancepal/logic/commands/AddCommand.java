@@ -11,7 +11,7 @@ import static seedu.insurancepal.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.model.Model;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 
 /**
  * Adds a person to the address book.
@@ -42,14 +42,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Person toAdd;
+    private final Client toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Client client) {
+        requireNonNull(client);
+        toAdd = client;
     }
 
     @Override

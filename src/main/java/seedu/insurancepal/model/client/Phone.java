@@ -1,4 +1,4 @@
-package seedu.insurancepal.model.person;
+package seedu.insurancepal.model.client;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.insurancepal.commons.util.AppUtil.checkArgument;

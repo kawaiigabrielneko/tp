@@ -1,4 +1,4 @@
-package seedu.insurancepal.model.person;
+package seedu.insurancepal.model.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.insurancepal.testutil.Assert.assertThrows;

@@ -9,8 +9,8 @@ import seedu.insurancepal.commons.core.Messages;
 import seedu.insurancepal.commons.core.index.Index;
 import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.model.Model;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Revenue;
 
 /**
  * Updates the revenue of an existing client in the address book.
@@ -42,31 +42,31 @@ public class RevenueCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Client> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(
-                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    this.revenue.addRevenue(personToEdit.getRevenue()),
-                    personToEdit.getAddress(), personToEdit.getTags(),
-                    personToEdit.getInsurances(), personToEdit.getNote(),
-                    personToEdit.getAppointment(), personToEdit.getClaims());
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
+        Client editedClient = new Client(
+                    clientToEdit.getName(), clientToEdit.getPhone(), clientToEdit.getEmail(),
+                    this.revenue.addRevenue(clientToEdit.getRevenue()),
+                    clientToEdit.getAddress(), clientToEdit.getTags(),
+                    clientToEdit.getInsurances(), clientToEdit.getNote(),
+                    clientToEdit.getAppointment(), clientToEdit.getClaims());
 
-        if (editedPerson.getRevenue().isMaxRevenue()) {
-            throw new CommandException(String.format(MESSAGE_ADD_REVENUE_FAIL_OVERFLOW, personToEdit.getName()));
+        if (editedClient.getRevenue().isMaxRevenue()) {
+            throw new CommandException(String.format(MESSAGE_ADD_REVENUE_FAIL_OVERFLOW, clientToEdit.getName()));
         }
 
-        if (!editedPerson.getRevenue().isValidResultingRevenue()) {
-            throw new CommandException(String.format(MESSAGE_ADD_REVENUE_FAIL_NEGATIVE, personToEdit.getName()));
+        if (!editedClient.getRevenue().isValidResultingRevenue()) {
+            throw new CommandException(String.format(MESSAGE_ADD_REVENUE_FAIL_NEGATIVE, clientToEdit.getName()));
         }
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(clientToEdit, editedClient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedClient));
     }
 
     /**
@@ -74,8 +74,8 @@ public class RevenueCommand extends Command {
      * the remark is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_ADD_REVENUE_SUCCESS, personToEdit);
+    private String generateSuccessMessage(Client clientToEdit) {
+        return String.format(MESSAGE_ADD_REVENUE_SUCCESS, clientToEdit);
     }
 
     @Override

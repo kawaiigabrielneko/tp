@@ -8,7 +8,7 @@ import seedu.insurancepal.commons.core.index.Index;
 import seedu.insurancepal.commons.exceptions.IllegalValueException;
 import seedu.insurancepal.logic.commands.NoteCommand;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
-import seedu.insurancepal.model.person.Note;
+import seedu.insurancepal.model.client.Note;
 
 //@author xianlinc-reused
 //Reused from https://nus-cs2103-ay2122s1.github.io/tp/tutorials/AddRemark.html

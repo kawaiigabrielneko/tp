@@ -13,14 +13,14 @@ import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.appointment.Appointment;
 import seedu.insurancepal.model.claim.Claim;
-import seedu.insurancepal.model.person.Address;
-import seedu.insurancepal.model.person.Email;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.Name;
-import seedu.insurancepal.model.person.Note;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.Phone;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Address;
+import seedu.insurancepal.model.client.Email;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.Name;
+import seedu.insurancepal.model.client.Note;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Phone;
+import seedu.insurancepal.model.client.Revenue;
 import seedu.insurancepal.model.tag.Tag;
 
 public class ScheduleCommand extends Command {
@@ -53,37 +53,37 @@ public class ScheduleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Client> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToMeet = lastShownList.get(index.getZeroBased());
-        Person newAppointmentPerson = scheduleAppointment(personToMeet, this.newAppointment);
+        Client clientToMeet = lastShownList.get(index.getZeroBased());
+        Client newAppointmentClient = scheduleAppointment(clientToMeet, this.newAppointment);
 
-        model.setPerson(personToMeet, newAppointmentPerson);
+        model.setPerson(clientToMeet, newAppointmentClient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_MEET_PERSON_SUCCESS, newAppointmentPerson));
+        return new CommandResult(String.format(MESSAGE_MEET_PERSON_SUCCESS, newAppointmentClient));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person scheduleAppointment(Person personToMeet, Appointment desiredAppointment) {
-        requireNonNull(personToMeet);
+    private static Client scheduleAppointment(Client clientToMeet, Appointment desiredAppointment) {
+        requireNonNull(clientToMeet);
 
-        Name originalName = personToMeet.getName();
-        Phone originalPhone = personToMeet.getPhone();
-        Email originalEmail = personToMeet.getEmail();
-        Revenue originalRevenue = personToMeet.getRevenue();
-        Address originalAddress = personToMeet.getAddress();
-        Set<Tag> originalTags = personToMeet.getTags();
-        Set<Insurance> originalInsurances = personToMeet.getInsurances();
-        Note originalNote = personToMeet.getNote();
-        Set<Claim> originalClaims = personToMeet.getClaims();
-        return new Person(originalName, originalPhone, originalEmail, originalRevenue,
+        Name originalName = clientToMeet.getName();
+        Phone originalPhone = clientToMeet.getPhone();
+        Email originalEmail = clientToMeet.getEmail();
+        Revenue originalRevenue = clientToMeet.getRevenue();
+        Address originalAddress = clientToMeet.getAddress();
+        Set<Tag> originalTags = clientToMeet.getTags();
+        Set<Insurance> originalInsurances = clientToMeet.getInsurances();
+        Note originalNote = clientToMeet.getNote();
+        Set<Claim> originalClaims = clientToMeet.getClaims();
+        return new Client(originalName, originalPhone, originalEmail, originalRevenue,
                 originalAddress, originalTags, originalInsurances, originalNote, desiredAppointment,
                 originalClaims);
     }

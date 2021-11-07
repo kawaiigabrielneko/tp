@@ -15,13 +15,13 @@ import java.util.Set;
 import seedu.insurancepal.logic.commands.AddCommand;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
 import seedu.insurancepal.model.appointment.Appointment;
-import seedu.insurancepal.model.person.Address;
-import seedu.insurancepal.model.person.Email;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.Name;
-import seedu.insurancepal.model.person.Note;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.Phone;
+import seedu.insurancepal.model.client.Address;
+import seedu.insurancepal.model.client.Email;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.Name;
+import seedu.insurancepal.model.client.Note;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Phone;
 import seedu.insurancepal.model.tag.Tag;
 
 /**
@@ -51,10 +51,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Insurance> insuranceList = ParserUtil.parseInsurances(argMultimap.getAllValues(PREFIX_INSURANCE));
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(""));
-        Person person = new Person(name, phone, email, address, tagList, insuranceList,
+        Client client = new Client(name, phone, email, address, tagList, insuranceList,
                 note, new Appointment(""), new HashSet<>());
 
-        return new AddCommand(person);
+        return new AddCommand(client);
     }
 
 

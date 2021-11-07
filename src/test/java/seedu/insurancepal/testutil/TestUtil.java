@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.insurancepal.commons.core.index.Index;
 import seedu.insurancepal.model.Model;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
+    public static Client getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
     }
 }

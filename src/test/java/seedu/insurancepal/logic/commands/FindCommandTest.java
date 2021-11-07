@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.ModelManager;
 import seedu.insurancepal.model.UserPrefs;
-import seedu.insurancepal.model.person.NameContainsKeywordsPredicate;
+import seedu.insurancepal.model.client.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

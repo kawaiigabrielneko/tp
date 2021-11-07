@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.insurancepal.commons.core.LogsCenter;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 
 /**
  * Panel containing the list of persons.
@@ -18,30 +18,30 @@ public class AppointmentListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(AppointmentListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Client> personListView;
 
     /**
      * Creates a {@code AppointmentListPanel} with the given {@code ObservableList}.
      */
-    public AppointmentListPanel(ObservableList<Person> personList) {
+    public AppointmentListPanel(ObservableList<Client> clientList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(clientList);
         personListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code AppointmentCard}.
      */
-    class AppointmentListViewCell extends ListCell<Person> {
+    class AppointmentListViewCell extends ListCell<Client> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Client client, boolean empty) {
+            super.updateItem(client, empty);
 
-            if (empty || person == null) {
+            if (empty || client == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AppointmentCard(person, getIndex() + 1).getRoot());
+                setGraphic(new AppointmentCard(client, getIndex() + 1).getRoot());
             }
         }
     }

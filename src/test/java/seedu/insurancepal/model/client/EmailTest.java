@@ -1,4 +1,4 @@
-package seedu.insurancepal.model.person;
+package seedu.insurancepal.model.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

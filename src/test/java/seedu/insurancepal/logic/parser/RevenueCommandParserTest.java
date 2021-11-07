@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.insurancepal.commons.core.Money;
 import seedu.insurancepal.logic.commands.RevenueCommand;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Revenue;
 
 public class RevenueCommandParserTest {
 

@@ -13,8 +13,8 @@ import java.util.Set;
 
 import seedu.insurancepal.logic.commands.AddCommand;
 import seedu.insurancepal.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.Client;
 import seedu.insurancepal.model.tag.Tag;
 
 /**
@@ -25,23 +25,23 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Client client) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(client);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Client client) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + client.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + client.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
+        client.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
-        person.getInsurances().stream().forEach(
+        client.getInsurances().stream().forEach(
             i -> sb.append(PREFIX_TAG + i.getType().getTypeName() + " ")
         );
         return sb.toString();
@@ -83,9 +83,9 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code Person}'s note
      */
-    public static String getNoteDetails(Person person) {
+    public static String getNoteDetails(Client client) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NOTE).append(person.getNote().value);
+        sb.append(PREFIX_NOTE).append(client.getNote().value);
         return sb.toString();
     }
 }

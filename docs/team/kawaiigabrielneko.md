@@ -10,7 +10,7 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 Given below are my contributions to the project.
 
 * **New Feature**: Added insurances.
-  * What it does: Allows the user keep track of all insurances held by each person in the address book.
+  * What it does: Allows the user keep track of all insurances held by each client in the address book.
 
 * **Code contributed**: [RepoSense link]()
 

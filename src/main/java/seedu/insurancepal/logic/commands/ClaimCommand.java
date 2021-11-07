@@ -19,7 +19,7 @@ import seedu.insurancepal.model.claim.Claim;
 import seedu.insurancepal.model.claim.Description;
 import seedu.insurancepal.model.claim.Status;
 import seedu.insurancepal.model.claim.Title;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 
 public class ClaimCommand extends Command {
 
@@ -92,14 +92,14 @@ public class ClaimCommand extends Command {
 
         Claim editedClaim;
         ExecutionType executionType;
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Client> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INDEX_OUTSIDE_RANGE_FAILURE);
         }
 
-        Person personToAddClaim = lastShownList.get(index.getZeroBased());
-        HashSet<Claim> claims = new HashSet<>(personToAddClaim.getClaims());
+        Client clientToAddClaim = lastShownList.get(index.getZeroBased());
+        HashSet<Claim> claims = new HashSet<>(clientToAddClaim.getClaims());
 
         Optional<Claim> claimToEdit = getClaimWithTitle(claims, editClaimDescriptor.getTitle());
 
@@ -118,9 +118,9 @@ public class ClaimCommand extends Command {
             executionType = ExecutionType.EDIT;
         }
 
-        Person newPerson = new Person(personToAddClaim, claims);
+        Client newClient = new Client(clientToAddClaim, claims);
 
-        model.setPerson(personToAddClaim, newPerson);
+        model.setPerson(clientToAddClaim, newClient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(executionType.getSuccessMessage(), editedClaim));

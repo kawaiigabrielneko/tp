@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.insurancepal.commons.core.GuiSettings;
-import seedu.insurancepal.model.person.NameContainsKeywordsPredicate;
+import seedu.insurancepal.model.client.NameContainsKeywordsPredicate;
 import seedu.insurancepal.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

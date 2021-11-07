@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.UniquePersonList;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.UniqueClientList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,7 @@ import seedu.insurancepal.model.person.UniquePersonList;
  */
 public class InsurancePal implements ReadOnlyInsurancePal {
 
-    private final UniquePersonList persons;
+    private final UniqueClientList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class InsurancePal implements ReadOnlyInsurancePal {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueClientList();
     }
 
     public InsurancePal() {}
@@ -43,8 +43,8 @@ public class InsurancePal implements ReadOnlyInsurancePal {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setPersons(List<Client> clients) {
+        this.persons.setPersons(clients);
     }
 
     /**
@@ -61,16 +61,16 @@ public class InsurancePal implements ReadOnlyInsurancePal {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasPerson(Client client) {
+        requireNonNull(client);
+        return persons.contains(client);
     }
 
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) {
+    public void addPerson(Client p) {
         persons.add(p);
     }
 
@@ -79,17 +79,17 @@ public class InsurancePal implements ReadOnlyInsurancePal {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setPerson(Client target, Client editedClient) {
+        requireNonNull(editedClient);
 
-        persons.setPerson(target, editedPerson);
+        persons.setPerson(target, editedClient);
     }
 
     /**
      * Removes {@code key} from this {@code InsurancePal}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
+    public void removePerson(Client key) {
         persons.remove(key);
     }
 
@@ -102,7 +102,7 @@ public class InsurancePal implements ReadOnlyInsurancePal {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<Client> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
 

@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-T17-4/tp/tree/master/src/main/java/seedu/insurancepal/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-T17-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
 
 ### Logic component
 
@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `InsurancePalParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
+* stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `InsurancePal`, which `Person` references. This allows `InsurancePal` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `InsurancePal`, which `Client` references. This allows `InsurancePal` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="800" />
 
@@ -159,7 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 #### Current Implementation
 {:.no_toc}
 
-A client's revenue is currently represented by the `revenue` field under `Person`,
+A client's revenue is currently represented by the `revenue` field under `Client`,
 which is represented by a `Revenue` object.
 
 The `Revenue` object contains a `Money` field called `value` which represents the amount 
@@ -219,18 +219,18 @@ A user can use the add command to add a clients. A sequence diagram of this acti
 #### Current Implementation
 {:.no_toc}
 
-A client's note is currently represented by the `note` field under `Person`,
+A client's note is currently represented by the `note` field under `Client`,
 which is represented by an `Note` object.
 
-The `Note` object contains a `value` field that has the type `String`, the `value` field is the description of the note given to a `Person`.
+The `Note` object contains a `value` field that has the type `String`, the `value` field is the description of the note given to a `Client`.
 
 <img src="images/NoteClassDiagram.png" width="300" />
 
-A `Note` can be given to a `Person` through any of these 3 methods:
+A `Note` can be given to a `Client` through any of these 3 methods:
 
-1. Using the `NoteCommand` to add a note to an existing `Person`.
-2. Through the `AddCommand`, a new `Person` with a `Note` can be created.
-3. Editing a `Person` using the `EditCommand` to give the `Person` a `Note`.
+1. Using the `NoteCommand` to add a note to an existing `Client`.
+2. Through the `AddCommand`, a new `Client` with a `Note` can be created.
+3. Editing a `Client` using the `EditCommand` to give the `Client` a `Note`.
 
 The processing of a note command from the user can be split into 2 general steps:
 
@@ -262,9 +262,9 @@ There are 3 possible outcomes from the execution of a `NoteCommand`.
 
 *Aspect*: User interface of adding, editing and deleting Note
 
-* **Alternative 1 (Current choice):** The 'Note' command and 'Edit' command adds, edits and deletes. The 'Add' command is also able to create a person with a note.
+* **Alternative 1 (Current choice):** The 'Note' command and 'Edit' command adds, edits and deletes. The 'Add' command is also able to create a client with a note.
     * Pros:
-        * It is more intuitive as the note is a field that belongs to a `Person`.
+        * It is more intuitive as the note is a field that belongs to a `Client`.
         * The user has more flexibility when choosing how to add, edit or delete a note.
     * Cons:
         * It is difficult to give proper error messages since we are not sure of the user intentions
@@ -336,7 +336,7 @@ There are 3 possible outcomes from the execution of a ClaimCommand.
 #### Current Implementation
 {:.no_toc}
 
-An appointment with a client is currently represented by the `appointment` field under `Person`,
+An appointment with a client is currently represented by the `appointment` field under `Client`,
 which is represented by an `Appointment` object.
 
 The `Appointment` object contains a `LocalDateTime` field called `appointmentTime` which represents the time that
@@ -390,9 +390,9 @@ There are 3 possible outcomes from the execution of a ScheduleCommand.
 * `InsuranceType`, which is a `Enum` of types `Life`, `Health`, and `General`.
 * `brand`, a `String` representing the brand of insurance.
 
-A `Person` can have any number of different `Insurances`, stored as a `HashSet`.
+A `Client` can have any number of different `Insurances`, stored as a `HashSet`.
 
-`Insurance` can be added to a `Person` through the `add` command, and edited through the `edit` command.
+`Insurance` can be added to a `Client` through the `add` command, and edited through the `edit` command.
 
 A class diagram of `Insurance` is as shown:
 
@@ -449,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent                                     | calculate the commissions I get from my client        | know the revenue obtained from the policy my client buys. |
 | `* * *`  | organised insurance agent                                    | remember what insurance my client already has        |  sell the client insurance he/she does not have yet |
 
-| `* * *`  | user with many contacts in the address book                                     | search for contacts in my contacts list whose name matches my input         |  navigate to the person I am looking for quickly |
+| `* * *`  | user with many contacts in the address book                                     | search for contacts in my contacts list whose name matches my input         |  navigate to the client I am looking for quickly |
 | `* * *`  | user                                     | delete clients from my contact list         | remove a client from my contact list I no longer need to keep in contact with|
 | `* * *`  | user                                    | use programs on Windows and Mac         | use it on all my laptops |
 | `* * *`  | user                                    | exit the program safely        | free up resources on his computer |
@@ -725,8 +725,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Notes**: A short paragraph that is written for a person to remind the user about details of that person
-* **Client**: A person the user is selling or trying to sell insurance to
+* **Notes**: A short paragraph that is written for a client to remind the user about details of that client
+* **Client**: A client the user is selling or trying to sell insurance to
 
 
 --------------------------------------------------------------------------------------------------------------------

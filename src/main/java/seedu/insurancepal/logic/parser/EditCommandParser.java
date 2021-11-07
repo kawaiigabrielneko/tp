@@ -20,8 +20,8 @@ import seedu.insurancepal.commons.core.index.Index;
 import seedu.insurancepal.logic.commands.EditCommand;
 import seedu.insurancepal.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.Revenue;
 import seedu.insurancepal.model.tag.Tag;
 
 /**

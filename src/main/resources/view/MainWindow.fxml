@@ -52,7 +52,7 @@
                 <HBox prefHeight="250.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                     <children>
 
-                        <VBox fx:id="personList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                        <VBox fx:id="clientList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                             <padding>
                                 <Insets bottom="10" left="10" right="10" top="10" />
                             </padding>

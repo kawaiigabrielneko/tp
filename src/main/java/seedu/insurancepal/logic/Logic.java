@@ -8,7 +8,7 @@ import seedu.insurancepal.logic.commands.CommandResult;
 import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
 import seedu.insurancepal.model.ReadOnlyInsurancePal;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 
 /**
  * API of the Logic component
@@ -31,13 +31,13 @@ public interface Logic {
     ReadOnlyInsurancePal getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Client> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the claims in the filtered list of persons */
-    ObservableList<Person> getPersonsWithClaims();
+    ObservableList<Client> getPersonsWithClaims();
 
     /** Returns an unmodifiable view of the Appointments in the filtered list of persons */
-    ObservableList<Person> getAppointmentList();
+    ObservableList<Client> getAppointmentList();
 
     /**
      * Returns the user prefs' address book file path.

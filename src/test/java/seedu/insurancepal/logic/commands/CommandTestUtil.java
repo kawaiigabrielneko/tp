@@ -24,10 +24,10 @@ import seedu.insurancepal.model.claim.Claim;
 import seedu.insurancepal.model.claim.Description;
 import seedu.insurancepal.model.claim.Status;
 import seedu.insurancepal.model.claim.Title;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.InsuranceType;
-import seedu.insurancepal.model.person.NameContainsKeywordsPredicate;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.InsuranceType;
+import seedu.insurancepal.model.client.NameContainsKeywordsPredicate;
+import seedu.insurancepal.model.client.Client;
 import seedu.insurancepal.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -151,7 +151,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         InsurancePal expectedAddressBook = new InsurancePal(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
@@ -164,8 +164,8 @@ public class CommandTestUtil {
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        Client client = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        final String[] splitName = client.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());

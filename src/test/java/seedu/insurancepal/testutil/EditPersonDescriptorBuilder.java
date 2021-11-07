@@ -8,14 +8,14 @@ import java.util.stream.Stream;
 
 import seedu.insurancepal.commons.core.Money;
 import seedu.insurancepal.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.insurancepal.model.person.Address;
-import seedu.insurancepal.model.person.Email;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.Name;
-import seedu.insurancepal.model.person.Note;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.Phone;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Address;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Email;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.Name;
+import seedu.insurancepal.model.client.Note;
+import seedu.insurancepal.model.client.Phone;
+import seedu.insurancepal.model.client.Revenue;
 import seedu.insurancepal.model.tag.Tag;
 
 /**
@@ -36,16 +36,16 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Client client) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setRevenue(person.getRevenue());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
-        descriptor.setInsurances(person.getInsurances());
-        descriptor.setNote(person.getNote());
+        descriptor.setName(client.getName());
+        descriptor.setPhone(client.getPhone());
+        descriptor.setEmail(client.getEmail());
+        descriptor.setRevenue(client.getRevenue());
+        descriptor.setAddress(client.getAddress());
+        descriptor.setTags(client.getTags());
+        descriptor.setInsurances(client.getInsurances());
+        descriptor.setNote(client.getNote());
     }
 
     /**

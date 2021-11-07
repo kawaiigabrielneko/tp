@@ -8,7 +8,7 @@ import seedu.insurancepal.commons.core.Messages;
 import seedu.insurancepal.commons.core.index.Index;
 import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.model.Model;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -33,15 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Client> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deletePerson(clientToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, clientToDelete));
     }
 
     @Override

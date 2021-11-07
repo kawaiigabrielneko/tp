@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 import seedu.insurancepal.commons.core.Money;
 import seedu.insurancepal.model.appointment.Appointment;
 import seedu.insurancepal.model.claim.Claim;
-import seedu.insurancepal.model.person.Address;
-import seedu.insurancepal.model.person.Email;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.Name;
-import seedu.insurancepal.model.person.Note;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.Phone;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Address;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Email;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.Name;
+import seedu.insurancepal.model.client.Note;
+import seedu.insurancepal.model.client.Phone;
+import seedu.insurancepal.model.client.Revenue;
 import seedu.insurancepal.model.tag.Tag;
 import seedu.insurancepal.model.util.SampleDataUtil;
 
@@ -62,17 +62,17 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        revenue = personToCopy.getRevenue();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
-        insurances = new HashSet<>(personToCopy.getInsurances());
-        note = personToCopy.getNote();
-        appointment = personToCopy.getAppointment();
-        claims = new HashSet<>(personToCopy.getClaims());
+    public PersonBuilder(Client clientToCopy) {
+        name = clientToCopy.getName();
+        phone = clientToCopy.getPhone();
+        email = clientToCopy.getEmail();
+        revenue = clientToCopy.getRevenue();
+        address = clientToCopy.getAddress();
+        tags = new HashSet<>(clientToCopy.getTags());
+        insurances = new HashSet<>(clientToCopy.getInsurances());
+        note = clientToCopy.getNote();
+        appointment = clientToCopy.getAppointment();
+        claims = new HashSet<>(clientToCopy.getClaims());
     }
 
     /**
@@ -157,8 +157,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, revenue, address, tags, insurances, note, appointment, claims);
+    public Client build() {
+        return new Client(name, phone, email, revenue, address, tags, insurances, note, appointment, claims);
     }
 
 }

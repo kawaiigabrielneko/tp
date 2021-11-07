@@ -16,7 +16,7 @@ import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.ModelManager;
 import seedu.insurancepal.model.UserPrefs;
 import seedu.insurancepal.model.appointment.Appointment;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 import seedu.insurancepal.testutil.PersonBuilder;
 
 public class ScheduleCommandTest {
@@ -24,16 +24,16 @@ public class ScheduleCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToMeet = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client clientToMeet = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Appointment sampleAppointment = new Appointment("04-Feb-2021 05:00");
         ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_FIRST_PERSON, sampleAppointment);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        Person newAppointmentPerson = new PersonBuilder(personToMeet).withAppointment(sampleAppointment).build();
-        expectedModel.setPerson(personToMeet, newAppointmentPerson);
+        Client newAppointmentClient = new PersonBuilder(clientToMeet).withAppointment(sampleAppointment).build();
+        expectedModel.setPerson(clientToMeet, newAppointmentClient);
 
-        String expectedMessage = String.format(ScheduleCommand.MESSAGE_MEET_PERSON_SUCCESS, newAppointmentPerson);
+        String expectedMessage = String.format(ScheduleCommand.MESSAGE_MEET_PERSON_SUCCESS, newAppointmentClient);
 
         assertCommandSuccess(scheduleCommand, model, expectedMessage, expectedModel);
     }

@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 
 /**
  * An UI component that displays information of a {@code Appointment}.
@@ -21,7 +21,7 @@ public class AppointmentCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on InsurancePal level 4</a>
      */
 
-    public final Person person;
+    public final Client client;
 
     @FXML
     private HBox cardPane;
@@ -35,12 +35,12 @@ public class AppointmentCard extends UiPart<Region> {
     /**
      * Creates a {@code AppointmentCard} with the given {@code Person} and index to display.
      */
-    public AppointmentCard (Person person, int displayedIndex) {
+    public AppointmentCard (Client client, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.client = client;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        meeting.setText(person.getAppointment().getValue());
+        name.setText(client.getName().fullName);
+        meeting.setText(client.getAppointment().getValue());
     }
 
     @Override
@@ -58,6 +58,6 @@ public class AppointmentCard extends UiPart<Region> {
         // state check
         AppointmentCard card = (AppointmentCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && client.equals(card.client);
     }
 }

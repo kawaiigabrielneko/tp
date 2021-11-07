@@ -1,4 +1,4 @@
-package seedu.insurancepal.model.person;
+package seedu.insurancepal.model.client;
 
 public enum InsuranceType {
     LIFE("Life"),

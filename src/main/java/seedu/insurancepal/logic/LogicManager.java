@@ -14,7 +14,7 @@ import seedu.insurancepal.logic.parser.InsurancePalParser;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
 import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.ReadOnlyInsurancePal;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 import seedu.insurancepal.storage.Storage;
 
 /**
@@ -60,16 +60,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Client> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 
-    @Override public ObservableList<Person> getPersonsWithClaims() {
+    @Override public ObservableList<Client> getPersonsWithClaims() {
         return model.getPersonsWithClaims();
     }
 
     @Override
-    public ObservableList<Person> getAppointmentList() {
+    public ObservableList<Client> getAppointmentList() {
         return model.getAppointmentList();
     }
 

@@ -24,14 +24,14 @@ import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.appointment.Appointment;
 import seedu.insurancepal.model.claim.Claim;
-import seedu.insurancepal.model.person.Address;
-import seedu.insurancepal.model.person.Email;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.Name;
-import seedu.insurancepal.model.person.Note;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.Phone;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Address;
+import seedu.insurancepal.model.client.Email;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.Name;
+import seedu.insurancepal.model.client.Note;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Phone;
+import seedu.insurancepal.model.client.Revenue;
 import seedu.insurancepal.model.tag.Tag;
 
 /**
@@ -79,44 +79,44 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Client> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
+        Client editedClient = createEditedPerson(clientToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!clientToEdit.isSamePerson(editedClient) && model.hasPerson(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(clientToEdit, editedClient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedClient));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Client createEditedPerson(Client clientToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert clientToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Revenue updatedRevenue = editPersonDescriptor.getRevenue().orElse(personToEdit.getRevenue());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(clientToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(clientToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(clientToEdit.getEmail());
+        Revenue updatedRevenue = editPersonDescriptor.getRevenue().orElse(clientToEdit.getRevenue());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(clientToEdit.getTags());
         Set<Insurance> updatedInsurances = editPersonDescriptor.getInsurances()
-                .orElse(personToEdit.getInsurances());
-        Set<Claim> originalClaims = personToEdit.getClaims();
-        Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
-        Appointment originalAppointment = personToEdit.getAppointment();
+                .orElse(clientToEdit.getInsurances());
+        Set<Claim> originalClaims = clientToEdit.getClaims();
+        Note updatedNote = editPersonDescriptor.getNote().orElse(clientToEdit.getNote());
+        Appointment originalAppointment = clientToEdit.getAppointment();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedRevenue, updatedAddress,
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedRevenue, updatedAddress,
                 updatedTags, updatedInsurances, updatedNote, originalAppointment, originalClaims);
     }
 

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.insurancepal.logic.commands.FindCommand;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
-import seedu.insurancepal.model.person.NameContainsKeywordsPredicate;
+import seedu.insurancepal.model.client.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

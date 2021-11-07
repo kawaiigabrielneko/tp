@@ -13,7 +13,7 @@ import javafx.scene.layout.Region;
 import javafx.util.Pair;
 import seedu.insurancepal.commons.core.LogsCenter;
 import seedu.insurancepal.model.claim.Claim;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 
 /**
  * Panel containing the list of Claims and Names.
@@ -21,21 +21,21 @@ import seedu.insurancepal.model.person.Person;
 public class ClaimListPanel extends UiPart<Region> {
     private static final String FXML = "ClaimListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ClaimListPanel.class);
-    private ObservableList<Person> personList;
-    private ObservableList<Pair<Claim, Person>> claimList;
+    private ObservableList<Client> clientList;
+    private ObservableList<Pair<Claim, Client>> claimList;
 
     @FXML
-    private ListView<Pair<Claim, Person>> claimListView;
+    private ListView<Pair<Claim, Client>> claimListView;
 
     /**
      * Creates a {@code ClaimsListPanel} with the given {@code ObservableList}.
      */
-    public ClaimListPanel(ObservableList<Person> personList) {
+    public ClaimListPanel(ObservableList<Client> clientList) {
         super(FXML);
-        this.personList = personList;
-        ObservableList<Pair<Claim, Person>> claimList = FXCollections.observableArrayList();
+        this.clientList = clientList;
+        ObservableList<Pair<Claim, Client>> claimList = FXCollections.observableArrayList();
         this.claimList = claimList;
-        personList.addListener(new ListChangeListener<Person>() {
+        clientList.addListener(new ListChangeListener<Client>() {
             @Override
             public void onChanged(ListChangeListener.Change change) {
                 update();
@@ -47,9 +47,9 @@ public class ClaimListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Pair<Claim, Name>} using a {@code ClaimCard}.
      */
-    class ClaimListViewCell extends ListCell<Pair<Claim, Person>> {
+    class ClaimListViewCell extends ListCell<Pair<Claim, Client>> {
         @Override
-        protected void updateItem(Pair<Claim, Person> claim, boolean empty) {
+        protected void updateItem(Pair<Claim, Client> claim, boolean empty) {
             super.updateItem(claim, empty);
             if (empty || claim == null) {
                 setGraphic(null);
@@ -63,7 +63,7 @@ public class ClaimListPanel extends UiPart<Region> {
 
     private void update() {
         claimList = FXCollections.observableArrayList();
-        personList.stream().forEach(
+        clientList.stream().forEach(
             person -> person.getClaims().forEach(
                 claim -> claimList.add(new Pair<>(claim, person))
             ));
@@ -72,10 +72,10 @@ public class ClaimListPanel extends UiPart<Region> {
         claimListView.setCellFactory(listView -> new ClaimListViewCell());
     }
 
-    private class ClaimPersonPairComparator implements Comparator<Pair<Claim, Person>> {
+    private class ClaimPersonPairComparator implements Comparator<Pair<Claim, Client>> {
 
         @Override
-        public int compare(Pair<Claim, Person> firstPair, Pair<Claim, Person> secondPair) {
+        public int compare(Pair<Claim, Client> firstPair, Pair<Claim, Client> secondPair) {
             if (firstPair.getKey().getStatus().toString().equals("PENDING")
                     && secondPair.getKey().getStatus().toString().equals("COMPLETED")) {
                 return 0;

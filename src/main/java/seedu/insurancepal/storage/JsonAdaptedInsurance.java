@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.insurancepal.commons.exceptions.IllegalValueException;
-import seedu.insurancepal.model.person.Insurance;
+import seedu.insurancepal.model.client.Insurance;
 
 /**
  * Jackson-friendly version of {@link Insurance}.

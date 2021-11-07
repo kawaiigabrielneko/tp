@@ -18,8 +18,8 @@ import seedu.insurancepal.model.InsurancePal;
 import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.ModelManager;
 import seedu.insurancepal.model.UserPrefs;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Revenue;
 import seedu.insurancepal.testutil.PersonBuilder;
 
 public class RevenueCommandTest {
@@ -30,16 +30,16 @@ public class RevenueCommandTest {
 
     @Test
     public void execute_addRevenueUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withRevenue(REVENUE_STUB).build();
+        Client firstClient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client editedClient = new PersonBuilder(firstClient).withRevenue(REVENUE_STUB).build();
 
         RevenueCommand revenueCommand = new RevenueCommand(INDEX_FIRST_PERSON,
-                new Revenue(editedPerson.getRevenue().value));
+                new Revenue(editedClient.getRevenue().value));
 
-        String expectedMessage = String.format(RevenueCommand.MESSAGE_ADD_REVENUE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(RevenueCommand.MESSAGE_ADD_REVENUE_SUCCESS, editedClient);
 
         Model expectedModel = new ModelManager(new InsurancePal(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.setPerson(firstClient, editedClient);
 
         assertCommandSuccess(revenueCommand, model, expectedMessage, expectedModel);
     }
@@ -48,17 +48,17 @@ public class RevenueCommandTest {
     public void execute_addRevenueFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Client firstClient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client editedClient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withRevenue(REVENUE_STUB).build();
 
         RevenueCommand revenueCommand = new RevenueCommand(INDEX_FIRST_PERSON,
-                new Revenue(editedPerson.getRevenue().value));
+                new Revenue(editedClient.getRevenue().value));
 
-        String expectedMessage = String.format(RevenueCommand.MESSAGE_ADD_REVENUE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(RevenueCommand.MESSAGE_ADD_REVENUE_SUCCESS, editedClient);
 
         Model expectedModel = new ModelManager(new InsurancePal(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.setPerson(firstClient, editedClient);
 
         assertCommandSuccess(revenueCommand, model, expectedMessage, expectedModel);
     }
@@ -87,11 +87,11 @@ public class RevenueCommandTest {
 
     @Test
     public void execute_resultingRevenueNegativeUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client firstClient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         Money negativeMoneyOfBob = new Money((-1) * Float.valueOf(REVENUE_STUB));
         RevenueCommand revenueCommand = new RevenueCommand(INDEX_FIRST_PERSON, new Revenue(negativeMoneyOfBob));
-        String errorMessage = String.format(RevenueCommand.MESSAGE_ADD_REVENUE_FAIL_NEGATIVE, firstPerson.getName());
+        String errorMessage = String.format(RevenueCommand.MESSAGE_ADD_REVENUE_FAIL_NEGATIVE, firstClient.getName());
 
         assertCommandFailure(revenueCommand, model, errorMessage);
     }

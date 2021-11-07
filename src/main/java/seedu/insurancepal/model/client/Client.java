@@ -1,4 +1,4 @@
-package seedu.insurancepal.model.person;
+package seedu.insurancepal.model.client;
 
 import static seedu.insurancepal.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -16,7 +16,7 @@ import seedu.insurancepal.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Client {
 
     // Identity fields
     private final Name name;
@@ -35,7 +35,7 @@ public class Person {
     /**
      * Every field except revenue must be present and not null. Revenue will be set to 0 by default if not stated.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
+    public Client(Name name, Phone phone, Email email, Address address,
                   Set<Tag> tags, Set<Insurance> insurances, Note note, Appointment appointment, Set<Claim> claims) {
         requireAllNonNull(name, phone, email, address, tags, insurances, note, appointment, claims);
         this.name = name;
@@ -53,8 +53,8 @@ public class Person {
     /**
      * Every field for this case is provided and hence a revenue value will be tagged to the person.
      */
-    public Person(Name name, Phone phone, Email email, Revenue revenue, Address address, Set<Tag> tags,
-             Set<Insurance> insurances, Note note, Appointment appointment, Set<Claim> claims) {
+    public Client(Name name, Phone phone, Email email, Revenue revenue, Address address, Set<Tag> tags,
+                  Set<Insurance> insurances, Note note, Appointment appointment, Set<Claim> claims) {
         requireAllNonNull(name, phone, email, revenue, address, tags, insurances, note, appointment, claims);
         this.name = name;
         this.phone = phone;
@@ -71,15 +71,15 @@ public class Person {
     /**
      * Overridden constructor which takes in a person and overwrites its claims with another set of claims.
      */
-    public Person(Person previousPerson, Set<Claim> claims) {
-        this(previousPerson.name,
-                previousPerson.phone,
-                previousPerson.email,
-                previousPerson.address,
-                previousPerson.tags,
-                previousPerson.insurances,
-                previousPerson.note,
-                previousPerson.appointment,
+    public Client(Client previousClient, Set<Claim> claims) {
+        this(previousClient.name,
+                previousClient.phone,
+                previousClient.email,
+                previousClient.address,
+                previousClient.tags,
+                previousClient.insurances,
+                previousClient.note,
+                previousClient.appointment,
                 claims);
     }
 
@@ -139,13 +139,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Client otherClient) {
+        if (otherClient == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherClient != null
+                && otherClient.getName().equals(getName());
     }
 
     /**
@@ -169,21 +169,21 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Client)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getRevenue().equals(getRevenue())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getClaims().equals(getClaims())
-                && otherPerson.getInsurances().equals(getInsurances())
-                && otherPerson.getNote().equals(getNote())
-                && otherPerson.getAppointment().equals(getAppointment());
+        Client otherClient = (Client) other;
+        return otherClient.getName().equals(getName())
+                && otherClient.getPhone().equals(getPhone())
+                && otherClient.getEmail().equals(getEmail())
+                && otherClient.getRevenue().equals(getRevenue())
+                && otherClient.getAddress().equals(getAddress())
+                && otherClient.getTags().equals(getTags())
+                && otherClient.getClaims().equals(getClaims())
+                && otherClient.getInsurances().equals(getInsurances())
+                && otherClient.getNote().equals(getNote())
+                && otherClient.getAppointment().equals(getAppointment());
     }
 
     @Override

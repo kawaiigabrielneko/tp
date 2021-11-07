@@ -13,15 +13,15 @@ import seedu.insurancepal.model.claim.Claim;
 import seedu.insurancepal.model.claim.Description;
 import seedu.insurancepal.model.claim.Status;
 import seedu.insurancepal.model.claim.Title;
-import seedu.insurancepal.model.person.Address;
-import seedu.insurancepal.model.person.Email;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.InsuranceType;
-import seedu.insurancepal.model.person.Name;
-import seedu.insurancepal.model.person.Note;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.Phone;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Address;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Email;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.InsuranceType;
+import seedu.insurancepal.model.client.Name;
+import seedu.insurancepal.model.client.Note;
+import seedu.insurancepal.model.client.Phone;
+import seedu.insurancepal.model.client.Revenue;
 import seedu.insurancepal.model.tag.Tag;
 
 /**
@@ -31,36 +31,36 @@ public class SampleDataUtil {
 
     public static final Revenue ZERO_REVENUE = new Revenue(new Money(0));
 
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+    public static Client[] getSamplePersons() {
+        return new Client[] {
+            new Client(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Revenue(new Money(0)), new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends"), getInsuranceSet("Life"), new Note("Likes chicken"),
                 new Appointment("12-Feb-2022 12:12"),
                 ofValidClaimSet("Heart Surgery", "by Dr. Chan Keng Song at TTSH", "pending")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Client(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"), getInsuranceSet("Health"),
                 new Note("Enjoys beef"), new Appointment("13-Feb-2022 12:13"),
                 ofValidClaimSet("Car Accident at Thompson Road",
                         "Other party at fault",
                         "Completed")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+            new Client(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"), getInsuranceSet("Life", "Health"),
                 new Note("Eats chinese food"), new Appointment(""),
                 ofValidClaimSet("Root Canel", "At Happy Tooth Clinic", "pending")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Client(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family"), getInsuranceSet("General"),
                 new Note("Does not eat pork"), new Appointment("14-Feb-2022 12:12"),
                 ofValidClaimSet("Lost of luggage", "By Tiger Airways", "pending")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492022"), new Email("irfan@example.com"),
+            new Client(new Name("Irfan Ibrahim"), new Phone("92492022"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates"), getInsuranceSet("Life", "General"),
                 new Note("Does not like cake"), new Appointment("10-Feb-2022 12:12"),
                 ofValidClaimSet("Flooded basement", "Covered under home insurance", "completed")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+            new Client(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"), getInsuranceSet(), new Note("Does not like coffee"),
                     new Appointment("20-Feb-2011 15:12"), new HashSet<>())
@@ -69,8 +69,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyInsurancePal getSampleAddressBook() {
         InsurancePal sampleAb = new InsurancePal();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Client sampleClient : getSamplePersons()) {
+            sampleAb.addPerson(sampleClient);
         }
         return sampleAb;
     }

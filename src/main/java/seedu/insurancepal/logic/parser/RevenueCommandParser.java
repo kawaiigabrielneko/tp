@@ -9,7 +9,7 @@ import seedu.insurancepal.commons.core.index.Index;
 import seedu.insurancepal.commons.exceptions.IllegalValueException;
 import seedu.insurancepal.logic.commands.RevenueCommand;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Revenue;
 
 public class RevenueCommandParser implements Parser<RevenueCommand> {
 

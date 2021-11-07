@@ -25,8 +25,8 @@ import seedu.insurancepal.logic.commands.ListCommand;
 import seedu.insurancepal.logic.commands.NoteCommand;
 import seedu.insurancepal.logic.commands.RevenueCommand;
 import seedu.insurancepal.logic.parser.exceptions.ParseException;
-import seedu.insurancepal.model.person.NameContainsKeywordsPredicate;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.NameContainsKeywordsPredicate;
 import seedu.insurancepal.testutil.EditPersonDescriptorBuilder;
 import seedu.insurancepal.testutil.PersonBuilder;
 import seedu.insurancepal.testutil.PersonUtil;
@@ -37,9 +37,9 @@ public class InsurancePalParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Client client = new PersonBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(client));
+        assertEquals(new AddCommand(client), command);
     }
 
     @Test
@@ -57,8 +57,8 @@ public class InsurancePalParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Client client = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(client).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
@@ -92,20 +92,20 @@ public class InsurancePalParserTest {
 
     @Test
     public void parseCommand_note() throws Exception {
-        Person person = new PersonBuilder().build();
+        Client client = new PersonBuilder().build();
         NoteCommand command = (NoteCommand) parser.parseCommand(
                 NoteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
-                        + " " + PersonUtil.getNoteDetails(person));
-        assertEquals(new NoteCommand(INDEX_FIRST_PERSON, person.getNote()), command);
+                        + " " + PersonUtil.getNoteDetails(client));
+        assertEquals(new NoteCommand(INDEX_FIRST_PERSON, client.getNote()), command);
     }
 
     @Test
     public void parseCommand_revenue() throws Exception {
-        Person person = new PersonBuilder().build();
+        Client client = new PersonBuilder().build();
         RevenueCommand command = (RevenueCommand) parser.parseCommand(
                 RevenueCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
                         + " " + CliSyntax.PREFIX_REVENUE + "0");
-        assertEquals(new RevenueCommand(INDEX_FIRST_PERSON, person.getRevenue()), command);
+        assertEquals(new RevenueCommand(INDEX_FIRST_PERSON, client.getRevenue()), command);
     }
 
     @Test

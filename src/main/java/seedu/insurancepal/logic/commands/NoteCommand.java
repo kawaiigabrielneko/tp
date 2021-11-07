@@ -10,8 +10,8 @@ import seedu.insurancepal.commons.core.Messages;
 import seedu.insurancepal.commons.core.index.Index;
 import seedu.insurancepal.logic.commands.exceptions.CommandException;
 import seedu.insurancepal.model.Model;
-import seedu.insurancepal.model.person.Note;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Note;
 
 //@author xianlinc-reused
 //Reused from https://nus-cs2103-ay2122s1.github.io/tp/tutorials/AddRemark.html
@@ -52,22 +52,22 @@ public class NoteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Client> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getInsurances(),
-                note, personToEdit.getAppointment(), personToEdit.getClaims());
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
+        Client editedClient = new Client(
+                clientToEdit.getName(), clientToEdit.getPhone(), clientToEdit.getEmail(),
+                clientToEdit.getAddress(), clientToEdit.getTags(), clientToEdit.getInsurances(),
+                note, clientToEdit.getAppointment(), clientToEdit.getClaims());
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(clientToEdit, editedClient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedClient));
     }
 
     @Override
@@ -92,8 +92,8 @@ public class NoteCommand extends Command {
      * the note is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
+    private String generateSuccessMessage(Client clientToEdit) {
         String message = !note.value.isEmpty() ? MESSAGE_ADD_NOTE_SUCCESS : MESSAGE_DELETE_NOTE_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, clientToEdit);
     }
 }

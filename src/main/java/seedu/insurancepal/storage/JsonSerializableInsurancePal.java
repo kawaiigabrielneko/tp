@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.insurancepal.commons.exceptions.IllegalValueException;
 import seedu.insurancepal.model.InsurancePal;
 import seedu.insurancepal.model.ReadOnlyInsurancePal;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
 
 /**
  * An Immutable InsurancePal that is serializable to JSON format.
@@ -48,11 +48,11 @@ class JsonSerializableInsurancePal {
     public InsurancePal toModelType() throws IllegalValueException {
         InsurancePal insurancePal = new InsurancePal();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (insurancePal.hasPerson(person)) {
+            Client client = jsonAdaptedPerson.toModelType();
+            if (insurancePal.hasPerson(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            insurancePal.addPerson(person);
+            insurancePal.addPerson(client);
         }
         return insurancePal;
     }

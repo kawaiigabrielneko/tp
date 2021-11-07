@@ -14,18 +14,18 @@ import seedu.insurancepal.commons.core.Money;
 import seedu.insurancepal.commons.exceptions.IllegalValueException;
 import seedu.insurancepal.model.appointment.Appointment;
 import seedu.insurancepal.model.claim.Claim;
-import seedu.insurancepal.model.person.Address;
-import seedu.insurancepal.model.person.Email;
-import seedu.insurancepal.model.person.Insurance;
-import seedu.insurancepal.model.person.Name;
-import seedu.insurancepal.model.person.Note;
-import seedu.insurancepal.model.person.Person;
-import seedu.insurancepal.model.person.Phone;
-import seedu.insurancepal.model.person.Revenue;
+import seedu.insurancepal.model.client.Address;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Email;
+import seedu.insurancepal.model.client.Insurance;
+import seedu.insurancepal.model.client.Name;
+import seedu.insurancepal.model.client.Note;
+import seedu.insurancepal.model.client.Phone;
+import seedu.insurancepal.model.client.Revenue;
 import seedu.insurancepal.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Client}.
  */
 class JsonAdaptedPerson {
 
@@ -74,7 +74,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Client source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -98,7 +98,7 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Client toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -168,7 +168,7 @@ class JsonAdaptedPerson {
         }
         final Appointment modelAppointment = new Appointment(appointment);
 
-        return new Person(modelName, modelPhone, modelEmail, modelRevenue, modelAddress, modelTags,
+        return new Client(modelName, modelPhone, modelEmail, modelRevenue, modelAddress, modelTags,
                 modelInsurances, modelNote, modelAppointment, modelClaims);
     }
 

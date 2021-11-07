@@ -21,8 +21,8 @@ import seedu.insurancepal.model.InsurancePal;
 import seedu.insurancepal.model.Model;
 import seedu.insurancepal.model.ModelManager;
 import seedu.insurancepal.model.UserPrefs;
-import seedu.insurancepal.model.person.Note;
-import seedu.insurancepal.model.person.Person;
+import seedu.insurancepal.model.client.Client;
+import seedu.insurancepal.model.client.Note;
 import seedu.insurancepal.testutil.PersonBuilder;
 
 //@author xianlinc-reused
@@ -36,31 +36,31 @@ class NoteCommandTest {
 
     @Test
     public void execute_addNoteUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withNote(Note_STUB).build();
+        Client firstClient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client editedClient = new PersonBuilder(firstClient).withNote(Note_STUB).build();
 
-        NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(editedPerson.getNote().value));
+        NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(editedClient.getNote().value));
 
-        String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedClient);
 
         Model expectedModel = new ModelManager(new InsurancePal(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.setPerson(firstClient, editedClient);
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_deleteNoteUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withNote("").build();
+        Client firstClient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client editedClient = new PersonBuilder(firstClient).withNote("").build();
 
         NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON,
-                new Note(editedPerson.getNote().toString()));
+                new Note(editedClient.getNote().toString()));
 
-        String expectedMessage = String.format(NoteCommand.MESSAGE_DELETE_NOTE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(NoteCommand.MESSAGE_DELETE_NOTE_SUCCESS, editedClient);
 
         Model expectedModel = new ModelManager(new InsurancePal(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.setPerson(firstClient, editedClient);
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
     }
@@ -69,16 +69,16 @@ class NoteCommandTest {
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Client firstClient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Client editedClient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withNote(Note_STUB).build();
 
-        NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(editedPerson.getNote().value));
+        NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(editedClient.getNote().value));
 
-        String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedClient);
 
         Model expectedModel = new ModelManager(new InsurancePal(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.setPerson(firstClient, editedClient);
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
     }

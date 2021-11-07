@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.insurancepal.commons.core.Messages;
 import seedu.insurancepal.model.Model;
-import seedu.insurancepal.model.person.NameContainsKeywordsPredicate;
+import seedu.insurancepal.model.client.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
