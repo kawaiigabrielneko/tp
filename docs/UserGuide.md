@@ -118,9 +118,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal i/life Prudential`
 
-<details markdown="1">
-
-<summary>Click here for the parameter constraints!</summary>
+Parameter constraints:
 
 Parameter | Constraints
 ---- | ----
@@ -133,7 +131,6 @@ Parameter | Constraints
 `INSURANCE_TYPE` | {::nomarkdown}<ul><li>Limited to the following, with any capitalization: <em>life</em>, <em>health</em>, <em>general</em><em></em></li><li>Cannot be blank</li></ul>{:/}
 `INSURANCE_BRAND` | {::nomarkdown}<ul><li>Total length must not exceed 24 characters, including insurance type<em></em></li><li>Can be blank</li></ul>{:/}
 
-</details>
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -162,9 +159,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/ i/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and insurances.
 
-<details markdown="1">
-
-<summary>Click here for the parameter constraints!</summary>
+Parameter constraints:
 
 Parameter | Constraints
 ---- | ----
@@ -178,8 +173,6 @@ Parameter | Constraints
 `TAG` | {::nomarkdown}<ul><li>Can only contain alphanumeric characters</li><li>Must be at most 20 characters long</li><li>Cannot be blank</li></ul>{:/}
 `INSURANCE_TYPE` | {::nomarkdown}<ul><li>Limited to the following, with any capitalization: <em>life</em>, <em>health</em>, <em>general</em><em></em></li><li>Cannot be blank</li></ul>{:/}
 `INSURANCE_BRAND` | {::nomarkdown}<ul><li>Total length must not exceed 24 characters, including insurance type<em></em></li><li>Can be blank</li></ul>{:/}
-
-</details>
 
 
 ### Locating clients by name: `find`
@@ -200,15 +193,11 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-<details markdown="1">
-
-<summary>Click here for the parameter constraints!</summary>
+Parameter constraints:
 
 Parameter | Constraints
 ---- | ----
 `KEYWORD` and `MORE_KEYWORDS`|   {::nomarkdown}<ul><li>Can contain any values except blank spaces</li></ul>{:/}
-
-</details>
 
 ### Deleting a client : `delete`
 
@@ -220,15 +209,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in InsurancePal.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-<details markdown="1">
-
-<summary>Click here for the parameter constraints!</summary>
+Parameter constraints:
 
 Parameter | Constraints
 ---- | ----
 `INDEX` | {::nomarkdown}<ul><li>Must be a <em>positive number</em> associated with a client in the displayed client list</li></ul>{:/}
 
-</details>
+
 
 ### Clearing all entries : `clear`
 
@@ -240,9 +227,7 @@ Format: `clear`
 
 You can use the `claim` command to add, edit or delete a claim. You can view the parameter constraints below. 
 
-<details markdown="1">
-
-<summary>Click here for the parameter constraints!</summary>
+Parameter constraints:
 
 Parameter | Constraints
 ---- | ----
@@ -250,8 +235,6 @@ Parameter | Constraints
 `TITLE` | {::nomarkdown}<ul><li>Can only contain alphanumeric characters.</li><li>Case-sensitive</li><li>Cannot be blank.</li></ul>{:/}
 `DESCRIPTION` | {::nomarkdown}<ul><li>Can only contain alphanumeric characters, blank spaces and punctuations</li><li>Cannot be blank.</li></ul>{:/}
 `STATUS` | {::nomarkdown}<ul><li>Limited to the following, with any capitalization: <em>pending</em>, <em>completed</em></li><li>Cannot be blank</li></ul>{:/}
-
-</details>
 
 #### Adding a claim
 You can add a claim by providing the client index, a title, description and status. A client cannot have 2 claims with the same title. If the client has a claim with the same title you provided, the claim would be edited instead.
@@ -287,16 +270,12 @@ Example:
 ### Add/Edit/Delete a note: `note`
 You can use the `note` command to add, edit or delete notes. You can view the parameter constraints below.
 
-<details markdown="1">
-
-<summary>Click here for the parameter constraints!</summary>
+Parameter constraints:
 
 Parameter | Constraints
 ---- | ----
 `INDEX` | {::nomarkdown}<ul><li>Must be a <em>positive number</em> associated with a client in the displayed client list</li></ul>{:/}
 `NOTE` | {::nomarkdown}<ul><li>Can contain any value, including alphanumeric characters, spaces and punctuations.</li><li>Can be blank</li></ul>{:/}
-
-</details>
 
 #### Adding a note
 You can add a note by providing a client index and the contents of the note. Each client can only store one note. If a client has a pre-existing note, that note will be edited instead.
@@ -331,16 +310,12 @@ Example:
 ### Add/Edit/Delete appointments: `schedule`
 You can use the `schedule` command to add, edit or delete appointments. You can view the parameter constraints below
 
-<details markdown="1">
-
-<summary>Click here for the parameter constraints!</summary>
+Parameter constraints:
 
 Parameter | Constraints
 ---- | ----
 `INDEX` | {::nomarkdown}<ul><li>Must be a <em>positive number</em> associated with a client in the displayed client list</li></ul>{:/}
 `MEETING_TIME` | {::nomarkdown}<ul><li>Must be the format <code>dd-mmm-yyyy hh:mm</code></li><li> Can be blank</li></ul>{:/}
-
-</details>
 
 #### Adding an appointment
 You can add an appointment by providing a client index and meeting time (`dd-mmm-yyyy hh:mm`). Each client can only store one appointment. If a client has a pre-existing appointment, that appointment will be updated instead.
@@ -394,17 +369,12 @@ revenue of Betsy Crowe to be `249.89`.
 
 ![RevenueExample2](images/RevenueExample2.png){:width="700px" .center-image}
 
-<details markdown="1">
-
-<summary>Click here for the parameter constraints!</summary>
+Parameter constraints:
 
 Parameter | Constraints
 ---- | ----
 `INDEX` | {::nomarkdown}<ul><li>Must be a <em>positive number</em> associated with a client in the displayed client list</li></ul>{:/}
 `REVENUE` | {::nomarkdown}<ul><li>Can be any float value up to 2 decimal places. E.g 100, 250.11, 500</li><li>Can be negative. E.g -90.10</li><li>Cannot be blank</li></ul>{:/}
-
-</details>
-
 
 ### Exiting the program : `exit`
 
